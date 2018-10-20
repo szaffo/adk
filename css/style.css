@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700');
+
+:root{
+	font-family:'Fira Sans',sans-serif;
+	--color-light-blue:#1565c0;
+	--color-dark-blue:#003c8f;
+	--color-adk-red:#aa2505;
+	--color-light-red:#ff3d00;
+	--color-purple:#793862;
+	--color-black:#333;
+	--color-white:#f2f2f2;
+	--max-width: 1000px;
+	color: var(--color-black);
+	background-color: var(--color-white);
+	font-size: 1.3rem;
+}
+
+body {
+	margin: 0px;
+	overflow: auto;
+	min-height: 100%;
+	align-items: stretch;
+}
+
+html {
+	scroll-behavior: smooth;
+	overscroll-behavior: contain;
+}
+
+header {
+	overflow: auto;
+}
+
+.head {
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	box-sizing: border-box;
+	background-color: var(--color-light-red);
+	border-bottom: 7px solid var(--color-adk-red);
+	padding: 7px 320px 0px 320px;
+	/*color: var(--color-white);*/
+	/*display: flex;*/
+	/*flex-direction: row;*/
+	/*justify-content: space-between;*/
+	/*align-items: baseline;*/
+}
+
+h1, h2, h3 {
+	margin: 0px;
+}
+
+.column {
+	background-color: pink;
+	width: 100%;
+	max-width: var(--max-width);
+	margin: 120px auto 20px auto;
+	min-height: calc(100% - 207px)
+}
