@@ -74,12 +74,65 @@
         		break;
 
         	case 'PUT':
-        		# code...
+        		// Check that every important parameter is given
+        		if ((empty($_GET["location"])) or (empty($_GET["start"])) or
+        			(empty($_GET["end"])) or (empty($_GET["nk"])) or (empty($_GET["password"]))) {
+        			echo json_encode("missing parameters");
+        			exit;
+        		} else {
+
+        		// Check date
+        		if (!empty($_GET["date"])) {
+        			$date = date("Y-m-d H:i", $_GET["date"]);
+        		} else {
+        			$date = date("Y-m-d H:i")
+        		}
+
+        		// Check for location
+        		if (preg_match('/^\d\d?$/', $_GET["location"])) {
+        			$location = $_GET["location"];
+        		} else {
+        			echo json_encode("Wrong location format");
+        			exit;
+        		}
+
+        		// Check for start time
+        		if (preg_match('/^\d\d:\d\d$/', $_GET["start"])) {
+        			$start = $_GET["start"];
+        		} else {
+        			echo json_encode("Wrong start format");
+        			exit;
+        		}
+
+        		// Check for end time
+        		if (preg_match('/^\d\d:\d\d$/', $_GET["end"])) {
+        			$end = $_GET["end"];
+        		} else {
+        			echo json_encode("Wrong end format");
+        			exit;
+        		}
+
+        		// Check for neptune code
+        		if (preg_match('/^[a-z0-9]{6}$/', $_GET["nk"])) {
+        			$start = $_GET["nk"];
+        		} else {
+        			echo json_encode("Wrong neptun code format");
+        			exit;
+        		}
+
+        		// Check for password
+        		if (preg_match('/^[a-z09_\.]{4-20}$/', $_GET["start"])) {
+        			$start = $_GET["password"];
+        		} else {
+        			echo json_encode("Wrong password format");
+        			exit;
+        		}
+
         		break;
 
         	default:
         		# code...
-        		break;
+       		break;
         }
         // var_dump($request_method);
 ?>
