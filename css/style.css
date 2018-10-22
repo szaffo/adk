@@ -67,7 +67,7 @@ h1, h2, h3 {
 
 .column-home {
 	margin: 120px auto 20px auto;
-	min-height: calc(100% - 185px);
+	min-height: calc(100% - 165px);
 }
 
 .column-footer {
@@ -133,12 +133,16 @@ h1, h2, h3 {
     	padding: 3px 0px 0px 30px;
     }
 
+    .homepage-h2 {
+    	display: none;
+    }
+
     :root {
     	font-size: 15px;
     }
 
     .column-home {
-    	margin-top: 0px;
+    	margin-top: 50px;
     }
 
     .footer-col-1 {
@@ -150,6 +154,6 @@ h1, h2, h3 {
     }
 
     .column-home {
-    	min-height: calc(100% - 111px);
+    	min-height: calc(100% - 161px);
     }
 }
