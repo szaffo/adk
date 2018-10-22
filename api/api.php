@@ -69,7 +69,9 @@
 // var_dump($records);
                                 // $json = array();
                   //       foreach ($records as $key => $value) {
-                  //            $json[] = json_encode($value, JSON_FORCE_OBJECT);
+                  //         Delta compression using up to 4 threads.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 2.30 KiB | 2.30 MiB/s, don   $json[] = json_encode($value, JSON_FORCE_OBJECT);
                   //       }
 // var_dump($json);
                         $json = json_encode($records, JSON_FORCE_OBJECT);
