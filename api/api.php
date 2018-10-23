@@ -55,8 +55,8 @@
                                 } else {
                                         $date = date("Y-m-d");
                                 }
-
-                                $querry = "SELECT {$params} FROM reservations WHERE location LIKE '{$location}' AND date >= '{$date}' AND end >= '{$time}';";
+                                $querry = "SELECT {$params} FROM reservations WHERE location LIKE '{$location}' AND date > '{$date}' AND end >= '{$time}';";
+// var_dump($querry);
                               
                         }       
 // var_dump($querry);
