@@ -1,33 +1,7 @@
 <html>
-	<head lang="hu">
-		<!-- Chrome, Firefox OS and Opera -->
-		<meta name="theme-color" content="#333">
-		<!-- Windows Phone -->
-		<meta name="msapplication-navbutton-color" content="#333">
-		<!-- iOS Safari -->
-		<meta name="apple-mobile-web-app-status-bar-style" content="#333">
-
-		<meta charset="utf-8">
-		<meta name="author" content="Szabó Martin">
-		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"/> -->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="">
-		<meta name="keywords" content=""/>
-		
-		<title>ADK</title>
-		<link rel="stylesheet" href="css/style.css">
-	</head>
-
+	<?php include 'pageparts/head.php'; ?>
 	<body>
-		<header>
-			<div class="head">
-				<div class="column">
-					<div class="logo">
-						<h1>Ajtósi Dürer sori Kollégium</h1>
-					</div>
-				</div>
-			</div>
-		</header>
+		<?php include 'pageparts/header.php'; ?>
 		
 
 		<content>
@@ -40,26 +14,26 @@
 						<!-- <a class="category-link" href="showcategory.php?id=5">Biliárd asztal</a> -->
 						<!-- <a class="category-link" href="showcategory.php?id=5">Konditerem</a> -->
 						<?php 
-							$link = mysqli_init(); 
+							// $link = mysqli_init(); 
 						
-							mysqli_real_connect_caesar($link);
+							// mysqli_real_connect_caesar($link);
 
-							if (mysqli_connect_errno()) {
-								$result = mysqli_connect_error();
-								$result = json_encode($result);
-								echo $result;
-								exit;
-							}
+							// if (mysqli_connect_errno()) {
+							// 	$result = mysqli_connect_error();
+							// 	$result = json_encode($result);
+							// 	echo $result;
+							// 	exit;
+							// }
 
-							mysqli_set_charset($link,"utf8");
+							// mysqli_set_charset($link,"utf8");
 
-							$query = "SELECT id, name FROM locations;";
+							// $query = "SELECT id, name FROM locations;";
 
-							$result  = mysqli_query($link, $query);
+							// $result  = mysqli_query($link, $query);
 
-							while($fetch = mysqli_fetch_assoc($result)) {
-								echo "<a class='category-link' href='showcategory.php?id={$fetch['id']}'>{$fetch['name']}</a>";
-							}
+							// while($fetch = mysqli_fetch_assoc($result)) {
+							// 	echo "<a class='category-link' href='showcategory.php?id={$fetch['id']}'>{$fetch['name']}</a>";
+							// }
 						 ?>
 					</div>
 				</div>
@@ -67,19 +41,7 @@
 		</content>
 
 
-		<footer>
-			<div class="footer">
-				<div class="column column-footer">
-					<div class="footer-col-1">
-					<h2>Szabó Martin 2018</h2>
-				</div>
-				<div class="footer-col-2">
-					<!-- <a href="" class="footer-link">Elérhetőségek</a> -->
-					<!-- <a href="" class="footer-link">Hibabejelentés</a> -->
-				</div>
-				</div>
-			</div>
-		</footer>
+		<?php include 'pageparts/footer.php'; ?>
 	</body>
 
 
