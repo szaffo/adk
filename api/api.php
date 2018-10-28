@@ -184,10 +184,15 @@
                         }
 
                         // Check for password
-                        if (preg_match('/^(\d\d*):([A-z0-9_\.öőúűóáé]{4,20})$/', $data["password"])) {
+                        if (preg_match('/^([A-z0-9_\.öőúűóáé]{4,20})$/', $data["password"])) {
                                 $start = $data["password"];
                         } else {
                                 echo json_encode("Wrong password format");
+                                exit;
+                        }
+
+                        if (strlen($data["note"]) > 120) {
+                                echo "Too long comment";
                                 exit;
                         }
 
@@ -196,9 +201,10 @@
                         $nk = $data["nk"];
                         $start = $data["start"];
                         $end = $data["end"];
+                        $note = $data["note"];
 
-                        $querry = "INSERT INTO reservations (start, end, location, date, password, nk) VALUES 
-                                ('{$start}', '{$end}', '{$location}', '{$date}', '{$password}', '{$nk}');";
+                        $querry = "INSERT INTO reservations (start, end, location, date, password, nk, note) VALUES 
+                                ('{$start}', '{$end}', '{$location}', '{$date}', '{$password}', '{$nk}', '{$note}');";
 
                         $result = mysqli_query($link, $querry);
                         // var_dump($result);

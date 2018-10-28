@@ -1,1 +1,2 @@
 Passwors must match /(\d\d*):([A-z0-9_\.öőúűóáé]{4,20})/
+Maximum length of comment is 120 chars

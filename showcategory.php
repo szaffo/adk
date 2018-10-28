@@ -1,28 +1,3 @@
-<?php 
-	function toString($post) {
-		$end = substr($post["end"], 0,5);
-		$start = substr($post["start"], 0,5);
-		$note = $post["note"];
-		$id = $post["id"];
-		$rtn = "<div class='post-container'>
-				<div class='post-wrapper'>	
-					<div class='time-box'>
-						<div class='from'>{$start}</div>
-						<div class='to'>{$end}</div>
-					</div>
-					<div class='notebox'>{$note}</div>
-				</div>
-				<div class='details'>
-					<form action='delete.php' method='POST'>
-						<input type='password' name='pw' class='input-password'>
-						<button class='post-delete-button' name='id' value='{$id}'>Törlés</button>
-					</form>
-				</div>
-			</div>";
-		return $rtn;
-	}
- ?>
-
 <html>
 	<?php include 'pageparts/head.php'; ?>
 	<body>
@@ -33,7 +8,7 @@
 			<div class="column column-home">
 				<div class="backplate" id="container">
 					
-					<div class="post-container">
+					<!-- <div class="post-container">
 						<div class="post-wrapper expand">	
 							<div class="time-box">
 								<div class="from">10:30</div>
@@ -43,74 +18,66 @@
 						</div>
 						<div class="details">
 							<form action="delelte.php" method="GET">
-								<input type="password" name="pw" class="input-password">
+								<input type="password" name="pw" class="input-password input">
 								<div class="information">Wrong Password</div>
 								<button class="post-delete-button" name='id' value="1">Törlés</button>
 							</form>
 						</div>
-					</div>
-
-					<?php 
-// 						// Connect to the database
-// 						$link = mysqli_init(); 
-				                        
-// 				        mysqli_real_connect_caesar($link);
-
-// 				        if (mysqli_connect_errno()) {
-// 				                echo "Database is not avaible at the moment";
-// 				                exit;
-// 				        }
-// 				        mysqli_set_charset($link,"utf8");
-
-// 						$params = "start, end, note, id";
-
-// 						// Check if the id is given
-// 						if (!isset($_GET["id"])) {
-// 							echo "No location id given";
-// 							exit;
-// 						}
-// 						$location = $_GET["id"];
-
-// 						// Check that the id is exist 
-// 						$querry = "SELECT name FROM locations WHERE id = '{$location}'";
-// 						$result = mysqli_query($link, $querry);
-// 						$result = mysqli_fetch_assoc($result);
-
-// 						if ($result == null) {
-// 							echo "Invalid location id";
-// 							exit;
-// 						}
-
-// 						// Get the records from database
-// 						$date = date("Y-m-d");
-// 						$time = date("H:i");
-// 					    $querry = "SELECT {$params} FROM reservations WHERE location = '{$location}' AND ((date > '{$date}') OR ((date = '{$date}') AND (start >= '{$time}')) ) ORDER BY date, start;";
-// // var_dump($querry);
-// 					    $result = mysqli_query($link, $querry);
-// // var_dump($result);
-// 					    // MAGIC with data
-// 					    $posts = array();
-// 					    while ($post = mysqli_fetch_assoc($result)) {
-// 					    	array_push($posts, $post);
-// 					    }
-// // var_dump($posts);
-// 					    foreach ($posts as  $post) {
-// // var_dump($post);
-// 					    	echo toString($post);
-// 					    }
-					?>
-
-				
-					
+					</div> -->
+			
 				</div>
 			</div> <!-- column -->
-		</content>
+
+			<div class="plus-button-container">
+				<div class="plus-button-circle" id="plus-button">
+					<div class="plus-button-vertical-line"><div class="plus-button-horizontal-line"></div></div>
+				</div>
+			</div>
+
+			<div class="panel-container" id="panel">
+				<div class="column">
+					<div class="panel">
+						<div class="times">
+							<div class="times-from">
+								<span>From</span>
+								<input type="time" class="input" required value='<?php echo date("H:i") ?>' id="from">
+							</div>
+							<div class="times-to">
+								<span>To</span>
+								<input type="time" class="input" required value='<?php echo date("H:i", time() + 60) ?>' id="to">
+							</div>
+							<div class="times-date">
+								<span>Date</span>
+								<input type="date" class="input" required value="<?php echo date('Y-m-d') ?>" id="date">
+							</div>
+						</div>
+						<div class="datas">
+							<div class="datas-nk">
+								<span>Neptun code</span>
+								<input type="text" class="input" required style="text-transform: uppercase;" id="nk">
+							</div>
+							<div class="datas-pw">
+								<span>Password</span>
+								<input type="password" class="input" required id="pw">
+							</div>
+						</div>
+						<div class="comment-box">
+							<span>Comment</span>
+							<textarea id="note" rows="5" maxlength="120" class="input"></textarea>
+						</div>
+						<div class="button-box">
+							<button class="button" id="submit">Send</button>
+						</div>
+					</div>
+				</div>
+			</div>
 
 
 		<?php include 'pageparts/footer.php'; ?>
 		<script src="js/getContent.js"></script>
-		<!-- <script src="js/deletePost.js"></script> -->
+		<script src="js/plusButton.js"></script>
 		<script src="js/postClass.js"></script>
+		<script src="js/sendData.js"></script>
 		<!-- <script src="js/expander.js"></script> -->
 	</body>
 </html>

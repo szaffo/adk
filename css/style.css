@@ -1,5 +1,5 @@
 /*@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700');*/
-@import url('https://fonts.googleapis.com/css?family=Dosis:400,500,600,700');
+@import url('https://fonts.googleapis.com/css?family=Dosis:400,600,700');
 
 :root{
 	/*font-family:'Fira Sans',sans-serif;*/
@@ -18,9 +18,12 @@
 	--max-width: 1000px;
 	--box-shadow-shifted-down: 0px 3px 15px -1px black;
 	--box-shadow:  0px 0px 20px -1px black;
+	--size-plus-button: 3.8rem;
+	--size-plus-button-lines: 0.4rem;
+	--size-plus-button-width: 60%;
 	color: var(--color-black);
 	background-color: var(--color-white);
-	font-size: 1.3rem;
+	font-size: 21px;
 }
 
 *::-moz-selection { /* Code for Firefox */
@@ -252,20 +255,28 @@ h1, h2, h3 {
 
 .input-password {
 	margin: 10px 10px 0px 0px;
+	/* height: 36px; */
+}
+
+.input {
 	border-radius: 3px;
 	border: 1px solid var(--color-adk-red);
 	font-size: 1.2rem;
 	background: var(--color-white);
 	padding: 0px 10px 0px 10px;
-	/* height: 36px; */
+	font-family: inherit;
 }
 
-.input-password:focus {
+.input:focus {
 	outline: none;
 	border-color: var(--color-light-red);
 }
 
 .post-delete-button {
+	margin-left: 10px;
+}
+
+.button {
 	font-size: 1.2rem;
 	color: var(--color-adk-red);
 	font-weight: 600;
@@ -273,10 +284,9 @@ h1, h2, h3 {
 	border-radius: 3px;
 	background: var(--color-white);
 	border: 1px solid var(--color-adk-red);
-	margin-left: 10px;
 }
 
-.post-delete-button:hover {
+.button:hover {
 	border-color: var(--color-light-red);
 	color: var(--color-light-red);
 }
@@ -296,6 +306,133 @@ form {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: baseline;
+}
+
+.plus-button-container {
+	position: fixed;
+	right: 30px;
+	bottom: 70px;
+	/* height: var(--size-plus-button); */
+	/* width: var(--size-plus-button); */
+}
+
+@keyframes plus-button {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(90deg);
+	}
+}
+
+.plus-button-circle {
+	width: var(--size-plus-button);
+	height: var(--size-plus-button);
+	border-radius: 50%;
+	background: var(--color-light-red);
+	box-shadow: var(--box-shadow);
+	-webkit-animation: plus-button 0.4s linear  infinite both;
+	-o-animation: plus-button 0.4s linear  infinite both;
+	animation: plus-button 0.4s linear  infinite both;
+	animation-play-state: paused;
+	cursor: pointer;
+}
+
+.plus-button-circle:hover {
+	animation-play-state: running;
+}
+
+.plus-button-horizontal-line {
+	background: inherit;
+	width: 100%;
+	height: var(--size-plus-button-lines);
+	border-radius: var(--size-plus-button-lines);
+	transform: rotate(90deg);
+	transform-origin: center;
+}
+
+.plus-button-vertical-line {
+	height: var(--size-plus-button-lines);
+	width: var(--size-plus-button-width);
+	background-color: var(--color-white);
+	margin: auto;
+	border-radius: var(--size-plus-button-lines);
+	transform: translateY(calc( ( var(--size-plus-button) - var(--size-plus-button-lines) ) / 2 ));
+	/* position: absolute; */
+	transform-origin: center;
+}
+
+.panel-container {
+	display: none;
+	position: fixed;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	background: var(--color-transparent-white);
+}
+
+.open {
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.panel {
+	background: var(--color-white);
+	width: 100%;
+	/* min-height: calc(100% - 400px); */
+	/* margin-top: 200px; */
+	box-shadow: var(--box-shadow-shifted-down);
+	border-radius: 3px;
+	box-sizing: border-box;
+	border-bottom: 5px solid var(--color-adk-red);
+	padding: 20px 25px 15px 25px;
+	display: flex;
+	flex-direction: column;
+	font-size: 1.4rem;
+	font-weight: 600;
+}
+
+.panel span {
+	margin-left: 10px;
+}
+
+.times, .datas, .comment-box {
+	display: flex;
+	margin-bottom: 15px;
+}
+
+.times-from {
+	margin-right: 50px;
+}
+
+.times-to {
+	margin-right: 50px;
+}
+
+.datas-nk {
+	margin-right: 74px;
+}
+
+.comment-box, .datas-pw, .datas-nk, .times-date, .times-to, .times-from {
+	display: flex;
+	flex-direction: column;
+}
+
+.comment-box input {
+	height: 100px;
+}
+
+.button-box {
+	display: flex;
+	justify-content: flex-end;
+}
+
+textarea {
+	resize: none;
+	font-family: inherit;
 }
 
 @media screen and (max-width: 800px) {
@@ -348,5 +485,21 @@ form {
     	margin-left: 0px;
     	margin-top: 7px;
     }
+
+    .times, .datas {
+		flex-direction: column;		
+	}
+
+	.times-from, .times-to, .datas-nk {
+		margin-right: 0px;
+	}
+
+	.panel-container {
+		overflow: auto;
+	}
+
+	.column {
+		margin: 10px auto 10px auto;
+	}
 }
 

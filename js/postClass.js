@@ -11,7 +11,7 @@ function deletePost(id, pw, cb, form) {
 	};
 	xmlhttp.open("DELETE", url, true);
 	var toSend = id+":"+pw;
-	console.log(toSend);
+	// console.log(toSend);
 	xmlhttp.send(toSend);}
 
 class Post{
@@ -60,6 +60,7 @@ class Post{
 		node_input_password.setAttribute("type", "password");
 		node_input_password.setAttribute("name", "pw");
 		node_input_password.classList.add("input-password");
+		node_input_password.classList.add("input");
 
 		// Information
 		var node_information = document.createElement("div");
@@ -69,6 +70,7 @@ class Post{
 		var node_delete_button = document.createElement("button");
 		node_delete_button.setAttribute("id", this.id);
 		node_delete_button.classList.add("post-delete-button");
+		node_delete_button.classList.add("button");
 		var text_node_delete_button = document.createTextNode("Törlés");
 		node_delete_button.appendChild(text_node_delete_button);
 
@@ -119,46 +121,9 @@ class Post{
 		node_post_container.appendChild(node_details);
 
 		this.node = node_post_container;
-		// this.node.expand = function() {this.classList.toggle("expand")}
-		// this.node.addEventListener("click", this.node.expand);
   	}
 
   	get getNode() {
   		return this.node;
   	}
 }
-
-
-// document.createElement("p");
-// document.createTextNode("This is a new paragraph.");
-// para.appendChild(node);
-// addEventListener()
-// classList.add("mystyle");
-// setAttribute("type", "text")
-
-// function Post(id, from, to, note) {
-// 	this.id = id;
-// 	this.from = from;
-// 	this.to = to;
-// 	this.note = note;
-// 	this.expand = function() {this.classList.toggle("expand")};
-// 	this.toStr = function() {
-// 		return "<div class='post-container' id='post-"+this.id+"'>\
-// 				<div class='post-wrapper'>	\
-// 					<div class='time-box'>\
-// 						<div class='from'>"+this.from.substring(0,5)+"</div>\
-// 						<div class='to'>"+this.to.substring(0,5)+"</div>\
-// 					</div>\
-// 					<div class='notebox'>"+this.note+"</div>\
-// 				</div>\
-// 				<div class='details'>\
-// 					<form action=''>\
-// 						<input type='password' name='pw' class='input-password'>\
-// 						<button class='post-delete-button' name='id' value='"+this.id+"'>Törlés</button>\
-// 					</form>\
-// 				</div>\
-// 			</div>";
-// 	};
-
-// 	// var node_from = 
-// }
