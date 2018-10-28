@@ -1,0 +1,1 @@
+Passwors must match /(\d\d*):([A-z0-9_\.öőúűóáé]{4,20})/

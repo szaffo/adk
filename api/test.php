@@ -1,6 +1,5 @@
 <?php
 		$link = mysqli_init(); 
-		        
         mysqli_real_connect_caesar($link);
 
         if (mysqli_connect_errno()) {

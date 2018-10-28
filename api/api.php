@@ -1,5 +1,5 @@
 <?php
-                $link = mysqli_init(); 
+        $link = mysqli_init(); 
                         
         mysqli_real_connect_caesar($link);
 
@@ -12,14 +12,11 @@
 
         mysqli_set_charset($link,"utf8");
 
-
-
-
-
+// SWITCH -----------------------------------------------------------------------------
         $request_method = $_SERVER["REQUEST_METHOD"];
         switch ($request_method) {
                 case 'GET':
-                        $params = "start, end, note";
+                        $params = "start, end, note, id";
                         if (!empty($_GET["id"])) {
                                 $id = $_GET["id"];
                                 $querry = "SELECT {$params} FROM reservations WHERE id = {$id};";
@@ -55,7 +52,7 @@
                                 } else {
                                         $date = date("Y-m-d");
                                 }
-                                $querry = "SELECT {$params} FROM reservations WHERE location LIKE '{$location}' AND date > '{$date}' AND end >= '{$time}';";
+                                $querry = "SELECT {$params} FROM reservations WHERE location LIKE '{$location}' AND ((date > '{$date}') OR ((date = '{$date}') AND (start >= '{$time}')) ) ORDER BY date, start;";
 // var_dump($querry);
                               
                         }       
@@ -80,7 +77,41 @@
                         break;
 
                 case 'DELETE':
-                        # code...
+                        $data = file_get_contents("php://input");
+        // echo $data;
+                        $matches = array();
+                        if (!preg_match('/^(\d\d*):([A-z0-9_\.öőúűóáé]{4,20})$/', $data, $matches)) {
+                                echo "Wrong data format";
+                                exit;
+                        }
+                        $id = $matches[1];
+                        $pw = $matches[2];
+        // echo $pw;
+                        $query = "SELECT password, location FROM reservations WHERE id={$id}";
+
+                        $result = mysqli_query($link, $query);
+                        $result = mysqli_fetch_assoc($result);
+                        if ($result == null) {
+                                echo "No record in database with this id";
+                                exit;
+                        }
+                        
+
+                        $password = $result["password"];
+                        $location = $result["location"];
+
+                        if ($password != $pw) {
+                                echo "Invalid password";
+                                exit;
+                        }
+
+                        $query = "DELETE FROM reservations WHERE id = {$id}";
+                        $result = mysqli_query($link, $query);
+                        if ($result == '1') {
+                                echo "Ok";
+                        } else {
+                                echo "Something went wrong";
+                        }
                         break;
 
                 case 'PUT':
@@ -153,7 +184,7 @@
                         }
 
                         // Check for password
-                        if (preg_match('/^[a-z0-9_\.]{5,20}$/', $data["password"])) {
+                        if (preg_match('/^(\d\d*):([A-z0-9_\.öőúűóáé]{4,20})$/', $data["password"])) {
                                 $start = $data["password"];
                         } else {
                                 echo json_encode("Wrong password format");

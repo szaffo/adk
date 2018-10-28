@@ -2,7 +2,7 @@
 			<div class="head">
 				<div class="column">
 					<div class="logo">
-						<h1>Ajtósi Dürer sori Kollégium</h1>
+						<a href="/"><h1 class="header-text">Ajtósi Dürer sori Kollégium</h1></a>
 					</div>
 				</div>
 			</div>
