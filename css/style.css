@@ -103,6 +103,9 @@ h1, h2, h3 {
 
 .column-footer {
 	padding-bottom: 3px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
 .align-center {
@@ -154,13 +157,13 @@ h1, h2, h3 {
 }
 
 .footer-col-1 {
-	width: 30%;
-	display: inline-block;
+	/* width: 30%; */
+	/* display: inline-block; */
 }
 
 .footer-col-2 {
-	width: 70%;
-	display: inline-block;
+	/* width: 70%; */
+	/* display: inline-block; */
 }
 
 .backplate {
@@ -445,6 +448,13 @@ textarea {
 .datebox {
 	white-space: nowrap;
 	color: var(--color-black);
+}
+
+.footer-link {
+	font-size: 1.2rem;
+	text-decoration: none;
+	color: var(--color-black);
+	font-weight: 700;
 }
 
 @media screen and (max-width: 800px) {
