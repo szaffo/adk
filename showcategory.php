@@ -7,11 +7,10 @@
 		<content>
 			<div class="column column-home">
 				<div class="backplate" id="container">
-					
-					
-					
 
-					<div class="post-container" id="post-23">
+					<!-- HERE COMES THE CONTENT -->
+
+					<!-- <div class="post-container" id="post-23">
 					<div class="post-wrapper">
 					<div class="time-box">
 					<div class="from">08:00</div>
@@ -29,7 +28,7 @@
 					<button id="23" class="post-delete-button button">Törlés</button>
 					</form>
 					</div>
-					</div>
+					</div> -->
 			
 				</div>
 			</div> <!-- column -->
