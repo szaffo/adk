@@ -201,6 +201,7 @@ h1, h2, h3 {
 	flex-direction: row;
 	align-items: center;
 	cursor: pointer;
+	justify-content: space-between;
 }
 
 .time-box {
