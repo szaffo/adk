@@ -28,12 +28,14 @@
 				</div>
 			</div> <!-- column -->
 
+			<!-- Plus button -->
 			<div class="plus-button-container">
 				<div class="plus-button-circle" id="plus-button">
 					<div class="plus-button-vertical-line"><div class="plus-button-horizontal-line"></div></div>
 				</div>
 			</div>
 
+			<!-- Add panel -->
 			<div class="panel-container" id="panel">
 				<div class="column">
 					<div class="panel">
@@ -44,7 +46,7 @@
 							</div>
 							<div class="times-to">
 								<span>To</span>
-								<input type="time" class="input" required value='<?php echo date("H:i", time() + 60) ?>' id="to">
+								<input type="time" class="input" required value='<?php echo date("H:i", time() + 3600) ?>' id="to">
 							</div>
 							<div class="times-date">
 								<span>Date</span>
@@ -66,6 +68,7 @@
 							<textarea id="note" rows="5" maxlength="120" class="input"></textarea>
 						</div>
 						<div class="button-box">
+							<span class="response" id="response-box"></span>
 							<button class="button" id="submit">Send</button>
 						</div>
 					</div>
@@ -74,10 +77,9 @@
 
 
 		<?php include 'pageparts/footer.php'; ?>
+		<script src="js/postClass.js"></script>
 		<script src="js/getContent.js"></script>
 		<script src="js/plusButton.js"></script>
-		<script src="js/postClass.js"></script>
 		<script src="js/sendData.js"></script>
-		<!-- <script src="js/expander.js"></script> -->
 	</body>
 </html>

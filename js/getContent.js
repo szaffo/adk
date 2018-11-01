@@ -26,7 +26,8 @@ if (id != null) {
 			var from = posts[i].start;
 			var to = posts[i].end;
 			var note = posts[i].note;
-			post = new Post(id, from, to, note);
+			var date = posts[i].date;
+			post = new Post(id, from, to, note, date);
 			container.appendChild(post.node);
 			// console.log(post);
 		}

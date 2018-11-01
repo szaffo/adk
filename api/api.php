@@ -16,7 +16,7 @@
         $request_method = $_SERVER["REQUEST_METHOD"];
         switch ($request_method) {
                 case 'GET':
-                        $params = "start, end, note, id";
+                        $params = "start, end, date, note, id";
                         if (!empty($_GET["id"])) {
                                 $id = $_GET["id"];
                                 $querry = "SELECT {$params} FROM reservations WHERE id = {$id};";
@@ -52,7 +52,7 @@
                                 } else {
                                         $date = date("Y-m-d");
                                 }
-                                $querry = "SELECT {$params} FROM reservations WHERE location LIKE '{$location}' AND ((date > '{$date}') OR ((date = '{$date}') AND (start >= '{$time}')) ) ORDER BY date, start;";
+                                $querry = "SELECT {$params} FROM reservations WHERE location LIKE '{$location}' AND ((date > '{$date}') OR ((date = '{$date}') AND (end >= '{$time}')) ) ORDER BY date, start;";
 // var_dump($querry);
                               
                         }       
@@ -77,22 +77,32 @@
                         break;
 
                 case 'DELETE':
-                        $data = file_get_contents("php://input");
-        // echo $data;
-                        $matches = array();
-                        if (!preg_match('/^(\d\d*):([A-z0-9_\.öőúűóáé]{4,20})$/', $data, $matches)) {
-                                echo "Wrong data format";
+                        $data = file_get_contents("php://input"); 
+                        $data = json_decode($data, true);
+
+                        if (!isset($data["password"])) {
+                            echo json_encode("No password given");
+                            exit;
+                        }
+
+                         if (!isset($data["id"])) {
+                            echo json_encode("No id given");
+                            exit;
+                        }
+                        
+                        if (!preg_match('/^[A-z0-9_\.öőúűóáé]{4,20}$/', $data["password"])) {
+                                echo json_encode("Wrong password format");
                                 exit;
                         }
-                        $id = $matches[1];
-                        $pw = $matches[2];
+                        $id = $data["id"];
+                        $pw = $data["password"];
         // echo $pw;
                         $query = "SELECT password, location FROM reservations WHERE id={$id}";
 
                         $result = mysqli_query($link, $query);
                         $result = mysqli_fetch_assoc($result);
                         if ($result == null) {
-                                echo "No record in database with this id";
+                                echo json_encode("No record in database with this id");
                                 exit;
                         }
                         
@@ -101,16 +111,16 @@
                         $location = $result["location"];
 
                         if ($password != $pw) {
-                                echo "Invalid password";
+                                echo json_encode("Invalid password");
                                 exit;
                         }
 
                         $query = "DELETE FROM reservations WHERE id = {$id}";
                         $result = mysqli_query($link, $query);
                         if ($result == '1') {
-                                echo "Ok";
+                                echo json_encode("Ok");
                         } else {
-                                echo "Something went wrong";
+                                echo json_encode("Something went wrong");
                         }
                         break;
 
@@ -173,6 +183,11 @@
                         } else {
                                 echo json_encode("Wrong end format");
                                 exit;
+                        }
+
+                        if ($end <= $start) {
+                            echo json_encode("Strart must be before end");
+                            exit;
                         }
 
                         // Check for neptune code

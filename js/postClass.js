@@ -4,24 +4,27 @@ function deletePost(id, pw, cb, form) {
 
 	response = xmlhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
-	        response = this.responseText;
+	        response = JSON.parse(this.responseText);
 	        console.log(response);
 	       	cb(response, form);
 	    }
 	};
 	xmlhttp.open("DELETE", url, true);
-	var toSend = id+":"+pw;
-	// console.log(toSend);
+	var toSend = {};
+	toSend.password = pw;
+	toSend.id = id;
+	toSend = JSON.stringify(toSend);
 	xmlhttp.send(toSend);}
 
 class Post{
-	constructor(id, from, to, note) {
+	constructor(id, from, to, note, date) {
 	    // Always call super first in constructor
 	    // super();
 	    this.id = id;
 		this.from = from;
 		this.to = to;
 		this.note = note;
+		this.date = date.replace(/-/g, '.');
 
 		// From
 		var node_from = document.createElement("div");
@@ -47,11 +50,18 @@ class Post{
 		var text_node_note_box = document.createTextNode(this.note);
 		node_note_box.appendChild(text_node_note_box);
 
+		// Datebox
+		var node_date_box = document.createElement("div");
+		node_date_box.classList.add("datebox");
+		var text_node_date_box = document.createTextNode(this.date);
+		node_date_box.appendChild(text_node_date_box);
+
 		// Post-wrapper
 		var node_post_wrapper = document.createElement("div");
 		node_post_wrapper.classList.add("post-wrapper");
 		node_post_wrapper.appendChild(node_time_box);
 		node_post_wrapper.appendChild(node_note_box);
+		node_post_wrapper.appendChild(node_date_box);
 		node_post_wrapper.expand = function() {this.classList.toggle("expand")};
 		node_post_wrapper.addEventListener("click", node_post_wrapper.expand);
 

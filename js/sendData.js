@@ -1,3 +1,18 @@
+function dealResponse(response) {
+	var info_box = document.getElementById("response-box");
+	var child_nodes = info_box.childNodes;
+	if (response == "Ok") {
+		location.reload();
+	} else {
+		var text_node_information = document.createTextNode(response);
+		if (info_box.childNodes.length > 0) {
+			info_box.removeChild(info_box.childNodes[0]);
+		}
+		info_box.appendChild(text_node_information);
+	}
+}
+
+
 var btn = document.getElementById('submit');
 btn.addEventListener("click", function() {
 	var arr = {};
@@ -20,8 +35,9 @@ btn.addEventListener("click", function() {
 
 	response = xmlhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
-	        response = this.responseText;
+	        response = JSON.parse(this.responseText);
 	        console.log(response);
+	        dealResponse(response);
 	    }
 	};
 	xmlhttp.open("PUT", url, true);

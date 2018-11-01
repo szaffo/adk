@@ -427,12 +427,23 @@ form {
 
 .button-box {
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 }
 
 textarea {
 	resize: none;
 	font-family: inherit;
+}
+
+.response {
+	font-weight: 400;
+	color: var(--color-adk-red);
+	font-style: 1.2rem;
+}
+
+.datebox {
+	white-space: nowrap;
+	color: var(--color-adk-red);
 }
 
 @media screen and (max-width: 800px) {
@@ -502,4 +513,3 @@ textarea {
 		margin: 10px auto 10px auto;
 	}
 }
-
