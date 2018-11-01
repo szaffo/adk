@@ -45,10 +45,13 @@ class Post{
 		node_time_box.appendChild(node_to);
 
 		// Notebox
-		var node_note_box = document.createElement("div");
-		node_note_box.classList.add("notebox");
-		var text_node_note_box = document.createTextNode(this.note);
-		node_note_box.appendChild(text_node_note_box);
+		// If there is no comment, it won't be appended
+		if (this.note != "") {
+			var node_note_box = document.createElement("div");
+			node_note_box.classList.add("notebox");
+			var text_node_note_box = document.createTextNode(this.note);
+			node_note_box.appendChild(text_node_note_box);
+		}
 
 		// Datebox
 		var node_date_box = document.createElement("div");
@@ -60,7 +63,10 @@ class Post{
 		var node_post_wrapper = document.createElement("div");
 		node_post_wrapper.classList.add("post-wrapper");
 		node_post_wrapper.appendChild(node_time_box);
-		node_post_wrapper.appendChild(node_note_box);
+		// If there is no comment, it won't be appended
+		if (this.note != "") {
+			node_post_wrapper.appendChild(node_note_box);
+		}
 		node_post_wrapper.appendChild(node_date_box);
 		node_post_wrapper.expand = function() {this.classList.toggle("expand")};
 		node_post_wrapper.addEventListener("click", node_post_wrapper.expand);
@@ -68,7 +74,6 @@ class Post{
 		// Password input
 		var node_input_password = document.createElement("input");
 		node_input_password.setAttribute("type", "password");
-		node_input_password.setAttribute("name", "pw");
 		node_input_password.classList.add("input-password");
 		node_input_password.classList.add("input");
 

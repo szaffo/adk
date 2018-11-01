@@ -8,22 +8,28 @@
 			<div class="column column-home">
 				<div class="backplate" id="container">
 					
-					<!-- <div class="post-container">
-						<div class="post-wrapper expand">	
-							<div class="time-box">
-								<div class="from">10:30</div>
-								<div class="to">14:10</div>
-							</div>
-							<div class="notebox">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem earum officia modi amet, praesentium fugit erro</div>
-						</div>
-						<div class="details">
-							<form action="delelte.php" method="GET">
-								<input type="password" name="pw" class="input-password input">
-								<div class="information">Wrong Password</div>
-								<button class="post-delete-button" name='id' value="1">Törlés</button>
-							</form>
-						</div>
-					</div> -->
+					
+					
+
+					<div class="post-container" id="post-23">
+					<div class="post-wrapper">
+					<div class="time-box">
+					<div class="from">08:00</div>
+					<div class="to">09:10</div>
+					</div>
+					<div class="notebox">
+					</div>
+					<div class="datebox">2020.01.01</div>
+					</div>
+					<div class="details">
+					<form action="" onsubmit="return false">
+					<input type="password" name="pw" class="input-password input">
+					<div class="information">
+					</div>
+					<button id="23" class="post-delete-button button">Törlés</button>
+					</form>
+					</div>
+					</div>
 			
 				</div>
 			</div> <!-- column -->
