@@ -65,7 +65,8 @@
                         }
 // var_dump($records);
 // var_dump($json);
-                        $json = json_encode($records, JSON_FORCE_OBJECT);
+                        $json = json_encode($records, JSON_FORCE_OBJECT | JSON_PRETTY_PRINT);
+                        // $json = json_encode($records, JSON_FORCE_OBJECT);
 
                         echo $json;
 
@@ -73,7 +74,7 @@
                         break;
                 
                 case 'POST':
-                        # code...
+                        echo json_encode("Under development");
                         break;
 
                 case 'DELETE':
@@ -144,7 +145,7 @@
                         // Check that every important parameter is given
                         if (! ((isset($data["location"])) or (isset($data["start"])) or
                                 (isset($data["end"])) or (isset($data["nk"])) or (isset($data["password"])))) {
-                                echo json_encode("missing parameters");
+                                echo json_encode("Missing parameters");
                                 exit;
                         }
 
@@ -207,7 +208,7 @@
                         }
 
                         if (strlen($data["note"]) > 120) {
-                                echo "Too long comment";
+                                echo json_encode("Comment is too long");
                                 exit;
                         }
 
